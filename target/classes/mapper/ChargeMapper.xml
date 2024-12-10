@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.ChargeMapper">
+    <!-- 根据医生姓名查询对应的挂号费用信息（通过关联 charge 表和 doctors 表） -->
+    <select id="getChargeByDoctorName" resultMap="ChargeResultMap">
+        SELECT c.* FROM charge c JOIN doctors d ON c.name = d.name WHERE d.name = #{doctorName}
+    </select>
+
+    <!-- 查询所有挂号费用信息 -->
+    <select id="getAllCharges" resultMap="ChargeResultMap">
+        SELECT * FROM charge
+    </select>
+
+    <!-- 结果映射，将 charge 表的字段与 Charge 实体类属性对应 -->
+    <resultMap id="ChargeResultMap" type="org.huhehai.hospital.entity.Charge">
+        <id property="name" column="name" />
+        <result property="department" column="department" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="cost" column="cost" />
+    </resultMap>
+</mapper>

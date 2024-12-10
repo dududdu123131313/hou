@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.DoctorMapper">
+    <!-- 根据医生姓名查询医生信息 -->
+    <select id="getDoctorByName" resultMap="DoctorResultMap">
+        SELECT * FROM doctors WHERE name = #{name}
+    </select>
+
+    <!-- 查询所有医生信息 -->
+    <select id="getAllDoctors" resultMap="DoctorResultMap">
+        SELECT * FROM doctors
+    </select>
+
+    <!-- 根据科室查询医生信息 -->
+    <select id="getDoctorsByDepartment" resultMap="DoctorResultMap">
+        SELECT * FROM doctors WHERE department = #{department}
+    </select>
+    <!-- 根据科室、门诊类型、就诊时间组合查询医生信息的 SQL 语句，动态构建查询条件 -->
+    <select id="getDoctorsByConditions" resultMap="DoctorResultMap">
+        SELECT * FROM doctors
+        <where>
+            <if test="department!= null and department!= ''">
+                AND department LIKE CONCAT('%', #{department}, '%')
+            </if>
+            <if test="outpatientType!= null and outpatientType!= ''">
+                AND outpatientType = #{outpatientType}
+            </if>
+            <if test="visitTime!= null and visitTime!= ''">
+                -- 使用 DATE() 函数截取日期部分进行比较，忽略时分秒
+                AND DATE(visitTime) = STR_TO_DATE(#{visitTime}, '%Y-%m-%d')
+            </if>
+        </where>
+    </select>
+
+    <!-- 结果映射，将 doctors 表字段与 Doctor 实体类属性对应 -->
+    <resultMap id="DoctorResultMap" type="org.huhehai.hospital.entity.Doctor">
+        <id property="name" column="name" />
+        <result property="department" column="department" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="totalNumber" column="totalNumber" />
+        <result property="remainingNumbers" column="remainingNumbers" />
+        <result property="visitTime" column="visitTime" />
+    </resultMap>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.RegisterMapper">
+    <!-- 插入一条挂号信息到 register 表（简化的插入逻辑，可根据实际完善） -->
+    <insert id="addRegister">
+        INSERT INTO register (patient_Name, patient_phonenumber, visitTime, doctor_department, doctor_name, outpatientType, registrationTime, medicalNumber)
+        VALUES (#{patient_Name}, #{patient_phonenumber}, #{visitTime}, #{doctor_department}, #{doctor_name}, #{outpatientType}, #{registrationTime}, #{medicalNumber})
+    </insert>
+
+    <!-- 根据患者姓名查询挂号信息（可用于后续查看已挂号情况等） -->
+    <select id="getRegisterByPatientName" resultMap="RegisterResultMap">
+        SELECT * FROM register WHERE patient_Name = #{patient_Name}
+    </select>
+
+    <!-- 结果映射，将 register 表字段与 Register 实体类属性对应 -->
+    <resultMap id="RegisterResultMap" type="org.huhehai.hospital.entity.Register">
+        <id property="patient_Name" column="patient_Name" />
+        <result property="patient_phonenumber" column="patient_phonenumber" />
+        <result property="visitTime" column="visitTime" />
+        <result property="doctor_department" column="doctor_department" />
+        <result property="doctor_name" column="doctor_name" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="registrationTime" column="registrationTime" />
+        <result property="medicalNumber" column="medicalNumber" />
+    </resultMap>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.ChargeRecordsMapper">
+    <!-- 插入一条挂号记录信息到 chargerecords 表 -->
+    <insert id="addChargeRecords">
+        INSERT INTO chargerecords (username, user_phoneNumber, user_age, visittime, doctor_department, doctor_name, outpatientType, registrationTime, medicalNumber, reservationConfirmation, chargecost, paymentTime)
+        VALUES (#{username}, #{user_phoneNumber}, #{user_age}, #{visittime}, #{doctor_department}, #{doctor_name}, #{outpatientType}, #{registrationTime}, #{medicalNumber}, #{reservationConfirmation}, #{chargecost}, #{paymentTime})
+    </insert>
+
+    <!-- 根据用户名查询该用户的所有挂号记录 -->
+    <select id="getChargeRecordsByUsername" resultMap="ChargeRecordsResultMap">
+        SELECT * FROM chargerecords WHERE username = #{username}
+    </select>
+
+    <!-- 结果映射，将 chargerecords 表字段与 ChargeRecords 实体类属性对应 -->
+    <resultMap id="ChargeRecordsResultMap" type="org.huhehai.hospital.entity.ChargeRecords">
+        <id property="username" column="username" />
+        <result property="user_phoneNumber" column="user_phoneNumber" />
+        <result property="user_age" column="user_age" />
+        <result property="visittime" column="visittime" />
+        <result property="doctor_department" column="doctor_department" />
+        <result property="doctor_name" column="doctor_name" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="registrationTime" column="registrationTime" />
+        <result property="medicalNumber" column="medicalNumber" />
+        <result property="reservationConfirmation" column="reservationConfirmation" />
+        <result property="chargecost" column="chargecost" />
+        <result property="paymentTime" column="paymentTime" />
+    </resultMap>
+</mapper>

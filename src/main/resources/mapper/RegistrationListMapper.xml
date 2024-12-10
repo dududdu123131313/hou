@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.RegistrationListMapper">
+    <!-- 插入一条挂号预约信息到 registrationlist 表 -->
+    <insert id="addRegistrationList">
+        <selectKey keyProperty="medicalNumber" resultType="int" order="BEFORE">
+            SELECT (totalNumber - remainingNumbers+1) FROM doctors WHERE name = #{doctor_name} and visitTime = #{visitTime}
+        </selectKey>
+        INSERT INTO registrationlist (name, phoneNumber, age, visitTime, doctor_name, department, outpatientType, registrationTime,medicalNumber, iscancel,accountName,ID)
+        VALUES (#{name}, #{phoneNumber}, #{age}, #{visitTime}, #{doctor_name}, #{department}, #{outpatientType}, #{registrationTime}, #{medicalNumber}, 0,#{accountName},#{ID})
+
+    </insert>
+    <update id="decrementDoctorRemainingNumber">
+        UPDATE doctors SET remainingNumbers = remainingNumbers - 1 WHERE name = #{doctor_name}  and visitTime = #{visitTime}
+    </update>
+
+    <!-- 根据账户名查询挂号预约信息的新SQL语句 -->
+    <select id="getRegistrationListByAccountName" resultMap="RegistrationListResultMap">
+        SELECT * FROM registrationlist WHERE accountName = #{accountName} and iscancel = 0
+    </select>
+    <!-- 根据用户名查询挂号预约信息 -->
+    <select id="getRegistrationListByUserName" resultMap="RegistrationListResultMap">
+        SELECT * FROM registrationlist WHERE name = #{name}
+    </select>
+
+    <!-- 取消挂号预约 -->
+    <update id="cancelRegistrationById">
+        UPDATE registrationlist SET iscancel = 1 WHERE ID = #{id}
+    </update>
+
+    <!-- 结果映射，将 registrationlist 表字段与 RegistrationList 实体类属性对应 -->
+    <resultMap id="RegistrationListResultMap" type="org.huhehai.hospital.entity.RegistrationList">
+        <id property="name" column="name" />
+        <result property="phoneNumber" column="phoneNumber" />
+        <result property="age" column="age" />
+        <result property="visitTime" column="visitTime" />
+        <result property="doctor_name" column="doctor_name" />
+        <result property="department" column="department" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="registrationTime" column="registrationTime" />
+        <result property="medicalNumber" column="medicalNumber" />
+        <result property="reservationConfirmation" column="reservationConfirmation" />
+        <result property="accountName" column="accountName"/>
+        <result property="ID" column="ID"/>
+    </resultMap>
+</mapper>

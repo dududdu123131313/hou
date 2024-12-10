@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.IdentificationMapper">
+    <!-- 根据用户名查询对应的身份信息 -->
+    <select id="getIdentificationByUserName" resultMap="IdentificationResultMap">
+        SELECT * FROM identification WHERE user_name = #{user_name}
+    </select>
+
+    <!-- 查询所有身份信息（实际可能较少这样用，仅示例） -->
+    <select id="getAllIdentifications" resultMap="IdentificationResultMap">
+        SELECT * FROM identification
+    </select>
+
+    <!-- 结果映射，将 identification 表字段与 Identification 实体类属性对应 -->
+    <resultMap id="IdentificationResultMap" type="org.huhehai.hospital.entity.Identification">
+        <id property="name" column="name" />
+        <result property="id" column="id" />
+        <result property="sex" column="sex" />
+        <result property="age" column="age" />
+        <result property="user_name" column="user_name" />
+    </resultMap>
+</mapper>
