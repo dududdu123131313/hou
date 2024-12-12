@@ -10,18 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9b42cf5-82bc-4d7d-87a3-89e8df367dbb" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/hospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.iws" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/controller/IdentificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/controller/IdentificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/mapper/IdentificationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/mapper/IdentificationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/service/IdentificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/service/IdentificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/service/IdentificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/huhehai/hospital/service/IdentificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/IdentificationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/IdentificationMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/huhehai/hospital/service/UserServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,7 +377,7 @@
       <workItem from="1733825048060" duration="4121000" />
       <workItem from="1733901906244" duration="140000" />
       <workItem from="1733907994745" duration="5221000" />
-      <workItem from="1733986410604" duration="1305000" />
+      <workItem from="1733986410604" duration="5906000" />
     </task>
     <servers />
   </component>
@@ -475,5 +470,12 @@
   </component>
   <component name="WebViewSettings">
     <webview flattenPackages="false" showMembers="false" autoscrollToSource="false" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="&#10;    // 新增用户信息（注册功能，接收前端传来的用户信息对象进行注册）&#10;    @PostMapping(&quot;/register&quot;)&#10;    public ResponseEntity&lt;Void&gt; registerUser(@RequestBody User user) {&#10;        try {&#10;            userService.registerUser(user);&#10;            return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);&#10;        } catch (Exception e) {&#10;            e.printStackTrace();&#10;            return new ResponseEntity&lt;&gt;(HttpStatus.INTERNAL_SERVER_ERROR);&#10;        }" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

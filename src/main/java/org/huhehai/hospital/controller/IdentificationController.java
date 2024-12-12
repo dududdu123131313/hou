@@ -36,4 +36,18 @@ public class IdentificationController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    // 添加插入实名认证信息的接口方法
+    @PostMapping
+    public ResponseEntity<Identification> insertIdentification(@RequestBody Identification identification) {
+        try {
+            Identification insertedIdentification = identificationService.insertIdentification(identification);
+            if (insertedIdentification!= null) {
+                return new ResponseEntity<>(insertedIdentification, HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

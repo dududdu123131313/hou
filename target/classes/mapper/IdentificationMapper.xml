@@ -11,6 +11,12 @@
         SELECT * FROM identification
     </select>
 
+    <!-- 插入实名认证信息的 SQL 语句 -->
+    <insert id="insertIdentification" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO identification (name, id, sex, age, user_name)
+        VALUES (#{name}, #{id}, #{sex}, #{age}, #{user_name})
+    </insert>
+
     <!-- 结果映射，将 identification 表字段与 Identification 实体类属性对应 -->
     <resultMap id="IdentificationResultMap" type="org.huhehai.hospital.entity.Identification">
         <id property="name" column="name" />

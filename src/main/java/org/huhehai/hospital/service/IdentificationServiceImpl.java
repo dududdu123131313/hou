@@ -22,4 +22,13 @@ public class IdentificationServiceImpl implements IdentificationService {
     public List<Identification> getAllIdentifications() {
         return identificationMapper.getAllIdentifications();
     }
+
+    @Override
+    public Identification insertIdentification(Identification identification) {
+        int result = identificationMapper.insertIdentification(identification);
+        if (result > 0) {
+            return identification;
+        }
+        return null;
+    }
 }
